@@ -640,87 +640,6 @@ html[lang='mr'] .ev-link { font: 15px/1 var(--font-deva); letter-spacing: 0; }
 .scratch-burst { position: absolute; left: 50%; top: 50%; pointer-events: none; }
 .scratch-burst i { position: absolute; width: 8px; height: 10px; border-radius: 60% 0 60% 0; }
 
-/* ---------- Dress code ---------- */
-.dress-stage { position: relative; margin-top: 8px; }
-.dress-slide { touch-action: pan-y; cursor: grab; }
-.dress-name { font: 600 15px/1.4 var(--font-caps); letter-spacing: 0.28em; text-transform: uppercase; color: #5a3a22; }
-html[lang='mr'] .dress-name { font: 22px/1.4 var(--font-deva-display); letter-spacing: 0; }
-.rack { width: min(100%, 330px); margin: 8px auto 0; height: auto; }
-.dress-lines { margin: 18px 0 0; display: grid; gap: 8px; }
-.dress-lines div { display: flex; gap: 10px; justify-content: center; align-items: baseline; flex-wrap: wrap; }
-.dress-lines dt { font: 500 11px/1 var(--font-caps); letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-ink); }
-html[lang='mr'] .dress-lines dt { font: 14px/1 var(--font-deva); letter-spacing: 0; }
-.dress-lines dd { margin: 0; font-size: 17px; color: #4e3420; }
-.swatches { display: flex; gap: 10px; justify-content: center; margin-top: 16px; }
-.swatches span { width: 22px; height: 22px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.12); }
-.dress-arrow {
-  position: absolute; top: 46%; z-index: 2; width: 44px; height: 44px; display: grid; place-items: center;
-  border: 1px solid rgba(154, 115, 48, 0.4); border-radius: 50%; background: rgba(255, 250, 240, 0.85); color: var(--gold-ink); cursor: pointer;
-}
-.dress-arrow svg { width: 20px; height: 20px; }
-.dress-arrow.prev { left: -6px; }
-.dress-arrow.next { right: -6px; }
-.dots { display: flex; justify-content: center; gap: 4px; margin-top: 18px; }
-.dots button { width: 24px; height: 24px; padding: 0; border: 0; background: none; cursor: pointer; display: grid; place-items: center; }
-.dots button::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #dccaa6; transition: background 0.2s, transform 0.2s; }
-.dots button.active::after { background: var(--gold-ink); transform: scale(1.3); }
-
-/* ---------- RSVP envelope ---------- */
-.rsvp { padding-bottom: 40px; }
-.rsvp-env { position: relative; margin: 30px auto 0; max-width: 400px; padding-bottom: 150px; }
-.rsvp-card {
-  position: relative; z-index: 2; margin: 0 18px; padding: 54px 22px 70px;
-  background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.45 0 0 0 0 0.35 0 0 0 0.1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
-    #f6f1e7;
-  border-radius: 6px; box-shadow: 0 10px 24px -14px rgba(60, 30, 10, 0.5);
-}
-.rsvp-seal { position: absolute; left: 50%; top: -38px; transform: translateX(-50%); }
-.rsvp-sub { font-style: italic; color: #8a7458; margin-bottom: 18px; }
-html[lang='mr'] .rsvp-sub { font-style: normal; }
-.rsvp form { display: grid; gap: 8px; text-align: left; }
-.field-label { font: 500 11px/1.4 var(--font-caps); letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-ink); }
-html[lang='mr'] .field-label { font: 15px/1.4 var(--font-deva); letter-spacing: 0; }
-.field-input {
-  width: 100%; min-height: 44px; padding: 8px 2px; border: 0; border-bottom: 1px solid rgba(154, 115, 48, 0.5);
-  background: transparent; font: 18px var(--font-serif); color: #3a2a20;
-}
-html[lang='mr'] .field-input { font-family: var(--font-deva); font-size: 17px; }
-.field-input:focus { outline: none; border-bottom-color: var(--maroon); box-shadow: 0 1px 0 var(--maroon); }
-.field-input[aria-invalid='true'] { border-bottom-color: #b3261e; }
-.field-error { color: #b3261e; font-size: 14px; }
-.choice { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 12px 0 0; padding: 0; border: 0; }
-.pill {
-  position: relative; display: grid; place-items: center; min-height: 44px; padding: 6px 8px; text-align: center;
-  border: 1px solid rgba(154, 115, 48, 0.5); border-radius: 999px; cursor: pointer;
-  font: 500 11px/1.3 var(--font-caps); letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-ink);
-  transition: background 0.2s, color 0.2s;
-}
-html[lang='mr'] .pill { font: 15px/1.3 var(--font-deva); letter-spacing: 0; }
-.pill input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
-.pill.on { background: var(--maroon); border-color: var(--maroon); color: #fbf1df; }
-.pill:has(input:focus-visible) { outline: 2px solid var(--maroon); outline-offset: 3px; }
-.guests { overflow: hidden; display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 10px; }
-.stepper { display: flex; align-items: center; gap: 6px; }
-.stepper button {
-  width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(154, 115, 48, 0.5); background: transparent;
-  color: var(--gold-ink); font-size: 22px; cursor: pointer;
-}
-.stepper button:disabled { opacity: 0.35; cursor: not-allowed; }
-.stepper output { min-width: 32px; text-align: center; font: 600 22px var(--font-serif); color: #3a2a20; }
-.rsvp form .btn-outline { justify-self: center; margin-top: 18px; }
-.rsvp-thanks { display: grid; justify-items: center; gap: 4px; color: var(--green-deep); font-size: 19px; }
-.rsvp-back {
-  position: absolute; left: 0; right: 0; bottom: 0; height: 270px; z-index: 1; border-radius: 6px;
-  background: linear-gradient(180deg, #5c0e1b, #7e1a2b);
-}
-.rsvp-pocket {
-  position: absolute; left: 0; right: 0; bottom: 0; height: 270px; z-index: 3; border-radius: 0 0 6px 6px;
-  background: linear-gradient(170deg, #8e2233, #6d1424);
-  clip-path: polygon(0 0, 50% 48%, 100% 0, 100% 100%, 0 100%);
-  filter: drop-shadow(0 -2px 4px rgba(0, 0, 0, 0.2));
-}
-
 /* ---------- Photo stack ---------- */
 .stack { position: relative; width: min(100%, 330px); aspect-ratio: 4 / 5; margin: 70px auto 10px; }
 .stack-seal { position: absolute; left: 50%; top: -36px; transform: translateX(-50%); z-index: 10; pointer-events: none; }
@@ -748,10 +667,7 @@ html[lang='mr'] .pill { font: 15px/1.3 var(--font-deva); letter-spacing: 0; }
 /* --- v2 fixes --- */
 /* `font:` shorthands reset numeric variants; force lining figures everywhere. */
 *, *::before, *::after { font-variant-numeric: lining-nums !important; }
-.mc-num, .tile-num, .stepper output { font-feature-settings: 'tnum' 1, 'lnum' 1; }
-.rsvp-env { padding-bottom: 200px; }
-.rsvp-card { padding-bottom: 96px; }
-.rsvp .btn-outline.solid { letter-spacing: 0.14em; line-height: 1.3; }
+.mc-num, .tile-num { font-feature-settings: 'tnum' 1, 'lnum' 1; }
 .ev-garland { width: 22px; top: -14px; }
 
 /* =====================================================================
@@ -794,7 +710,7 @@ body {
 
 /* Painted illustrations: watercolour filter + printed onto the paper. */
 .mandap { mix-blend-mode: multiply; }
-.ev-niche, .rack, .swags { filter: url(#f-paint); }
+.ev-niche, .swags { filter: url(#f-paint); }
 .ev-niche { box-shadow: none; }
 .ev-art { filter: drop-shadow(3px 10px 12px rgba(90, 55, 15, 0.25)); }
 .ev-icon { color: #6d4410; }
@@ -834,26 +750,12 @@ html[lang='mr'] .env-card-date { font: 14px var(--font-deva); letter-spacing: 0;
 }
 .wax-seal { filter: drop-shadow(1px 3px 2px rgba(60, 30, 5, 0.4)) drop-shadow(3px 8px 8px rgba(60, 30, 5, 0.25)); }
 
-/* ---------- Deckled paper (RSVP card, photos, save-the-date cover) ---------- */
+/* ---------- Deckled paper (photos, save-the-date cover) ---------- */
 .deckle {
   position: absolute; inset: 0; z-index: 0; pointer-events: none;
   background-color: #f8f2e6;
   background-image: var(--tex); background-size: var(--tex-size); background-blend-mode: multiply;
 }
-.rsvp-card { background: none; box-shadow: none; filter: drop-shadow(1px 2px 1px rgba(60, 30, 10, 0.12)) drop-shadow(4px 14px 16px rgba(60, 30, 10, 0.28)); }
-.rsvp-card > :not(.deckle) { position: relative; z-index: 1; }
-.rsvp-card > .rsvp-seal { position: absolute; z-index: 2; }
-.field-input { font: 400 22px/1.2 var(--font-hand); color: #1f2a5c; padding-top: 10px; }
-html[lang='mr'] .field-input { font: 400 21px/1.3 var(--font-hand); }
-.field-input::placeholder { font-family: var(--font-serif); font-size: 17px; color: #b3a080; }
-.rsvp-back, .rsvp-pocket { background-image: var(--tex), linear-gradient(180deg, #5c0e1b, #7e1a2b); background-size: var(--tex-size), 100% 100%; background-blend-mode: multiply; }
-.rsvp-pocket { background-image: var(--tex), linear-gradient(160deg, #94283a, #6a1222 70%); }
-.rsvp-pocket::after {
-  /* folded side flaps catch the light differently */
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(115deg, rgba(255, 255, 255, 0.08) 0 50%, rgba(0, 0, 0, 0.12) 50% 100%);
-}
-
 .frame { background: none; box-shadow: none; padding: 14px; filter: drop-shadow(1px 2px 1px rgba(0, 0, 0, 0.14)) drop-shadow(5px 16px 18px rgba(60, 30, 10, 0.3)); }
 .frame .deckle { background-color: #fbf8f1; }
 .frame-photo { position: relative; z-index: 1; height: 100%; overflow: hidden; border-radius: 1px; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08); }

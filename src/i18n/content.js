@@ -1,19 +1,18 @@
 // All copy for the invitation, in English and Marathi.
 // Source: the family's printed invitation cards (see /reference).
-// Dress-code suggestions and the RSVP WhatsApp number are placeholders to confirm.
 
 export const LANGS = ['en', 'mr'];
 
 export const WEDDING_START = '2026-11-29T18:30:00+05:30';
 
-/** Put the family's WhatsApp number here (with country code) to receive RSVPs directly. */
-export const RSVP_WHATSAPP = '';
-
 /** Drop an mp3 at public/audio/music.mp3 and a play/pause button appears automatically. */
 export const MUSIC_SRC = '/audio/music.mp3';
 
 export const VENUE = {
-  mapsQuery: 'Vitthal Mangalam Lawns, Varye, Satara, Maharashtra',
+  /** The family's Google Maps pin; every directions button opens this. */
+  mapsUrl: 'https://maps.app.goo.gl/FqtXZAQDjk3egz329',
+  /** Same pin as coordinates, for the embedded map (short links can't be embedded). */
+  coords: '17.753476,73.9919003',
   calendarLocation: 'Vitthal Mangalam Lawns, Old Satara–Pune Highway, Limbkhind, Varye, Satara',
 };
 
@@ -23,13 +22,6 @@ export const EVENTS = [
   { id: 'sangeet', icon: 'music', start: '2026-11-28T19:00:00+05:30', hours: 3 },
   { id: 'vidhi', icon: 'kalash', start: '2026-11-29T09:30:00+05:30', hours: 3 },
   { id: 'varmala', icon: 'garland', start: '2026-11-29T18:30:00+05:30', hours: 3, highlight: true },
-];
-
-export const DRESS_CODES = [
-  { id: 'engagement', palette: ['#F2C4C4', '#CFE5D6', '#F1E3B4', '#D9C8E6'] },
-  { id: 'haldi', palette: ['#F5C518', '#F28C28', '#FFF6DF', '#86A93F'] },
-  { id: 'sangeet', palette: ['#0F6B4F', '#2A4594', '#B0246A', '#C9A227'] },
-  { id: 'wedding', palette: ['#7E1A2B', '#136F63', '#C9962F', '#F6EEDB'] },
 ];
 
 export const STORY_PHOTOS = [
@@ -81,7 +73,7 @@ export const content = {
       month: 'Nov',
       year: '2026',
       weekday: 'Sunday',
-      time: 'Half past six in the evening',
+      time: '6:30 pm',
       calendar: 'Add to calendar',
       units: ['Days', 'Hrs', 'Min', 'Sec'],
     },
@@ -102,37 +94,6 @@ export const content = {
         vidhi: { name: 'Vivah Vidhi', when: 'Sunday, 29 Nov · 9:30 AM' },
         varmala: { name: 'Varmala', when: 'Sunday, 29 Nov · 6:30 PM' },
       },
-    },
-    dress: {
-      eyebrow: 'What to wear',
-      title: 'Dress code',
-      swipe: 'Swipe to explore',
-      women: 'Women',
-      men: 'Men',
-      prev: 'Previous look',
-      next: 'Next look',
-      items: {
-        engagement: { name: 'Engagement', women: 'Soft pastels — sarees or anarkalis', men: 'Pastel kurta or bandhgala' },
-        haldi: { name: 'Haldi', women: 'Sunshine yellows — light sarees or sharara sets', men: 'Yellow kurta with white pyjama' },
-        sangeet: { name: 'Sangeet', women: 'Jewel tones with sparkle — lehengas or indo-western', men: 'Nehru jacket or festive sherwani' },
-        wedding: { name: 'Wedding Day', women: 'Paithani or nauvari saree', men: 'Kurta with a pheta' },
-      },
-    },
-    rsvp: {
-      eyebrow: 'Kindly reply',
-      title: 'RSVP',
-      sub: 'Please let us know by 26 November',
-      name: 'Your name',
-      namePh: 'Full name',
-      accept: 'Joyfully accept',
-      decline: 'Regretfully decline',
-      guests: 'Number of guests',
-      fewer: 'Fewer guests',
-      more: 'More guests',
-      send: 'Send reply on WhatsApp',
-      errors: { required: 'Please enter your name', tooLong: 'Please use a shorter name', attending: 'Please choose an option' },
-      thanks: 'Thank you! Your reply is ready in WhatsApp.',
-      again: 'Edit reply',
     },
     photos: {
       eyebrow: 'Our story',
@@ -225,37 +186,6 @@ export const content = {
         vidhi: { name: 'विवाह विधी', when: 'रविवार, २९ नोव्हें. · सकाळी ९:३०' },
         varmala: { name: 'वरमाला', when: 'रविवार, २९ नोव्हें. · सायं. ६:३०' },
       },
-    },
-    dress: {
-      eyebrow: 'पेहराव',
-      title: 'ड्रेस कोड',
-      swipe: 'पाहण्यासाठी सरकवा',
-      women: 'महिला',
-      men: 'पुरुष',
-      prev: 'मागील',
-      next: 'पुढील',
-      items: {
-        engagement: { name: 'साखरपुडा', women: 'हलके पेस्टल रंग — साडी किंवा अनारकली', men: 'पेस्टल कुर्ता किंवा बंदगळा' },
-        haldi: { name: 'हळद', women: 'पिवळे रंग — हलकी साडी किंवा शरारा', men: 'पिवळा कुर्ता व पांढरा पायजमा' },
-        sangeet: { name: 'संगीत', women: 'गडद, झगमगते रंग — लेहेंगा किंवा इंडो-वेस्टर्न', men: 'नेहरू जॅकेट किंवा शेरवानी' },
-        wedding: { name: 'विवाह दिवस', women: 'पैठणी किंवा नऊवारी साडी', men: 'कुर्ता व फेटा' },
-      },
-    },
-    rsvp: {
-      eyebrow: 'कृपया कळवा',
-      title: 'उपस्थिती',
-      sub: '२६ नोव्हेंबरपर्यंत कळवावे',
-      name: 'आपले नाव',
-      namePh: 'पूर्ण नाव',
-      accept: 'आनंदाने येत आहे',
-      decline: 'येऊ शकत नाही',
-      guests: 'पाहुण्यांची संख्या',
-      fewer: 'कमी',
-      more: 'जास्त',
-      send: 'WhatsApp वर कळवा',
-      errors: { required: 'कृपया आपले नाव लिहा', tooLong: 'कृपया लहान नाव लिहा', attending: 'कृपया एक पर्याय निवडा' },
-      thanks: 'धन्यवाद! आपला संदेश WhatsApp मध्ये तयार आहे.',
-      again: 'पुन्हा बदला',
     },
     photos: {
       eyebrow: 'आमच्या आठवणी',

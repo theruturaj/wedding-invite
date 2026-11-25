@@ -6,9 +6,8 @@ import { downloadCalendar } from '../lib/calendar.js';
 import { Reveal, SectionHeading } from './Reveal.jsx';
 import { Lotus } from './ornaments/Ornaments.jsx';
 
-const mapsQuery = encodeURIComponent(VENUE.mapsQuery);
-const DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${mapsQuery}`;
-const EMBED_URL = `https://www.google.com/maps?q=${mapsQuery}&output=embed`;
+const DIRECTIONS_URL = VENUE.mapsUrl;
+const EMBED_URL = `https://www.google.com/maps?q=${VENUE.coords}&z=16&output=embed`;
 
 export function Venue() {
   const { t } = useLanguage();

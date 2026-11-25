@@ -6,7 +6,7 @@ import { ScratchCard } from './ScratchCard.jsx';
 import { EventIcon } from './ornaments/EventIcons.jsx';
 import { GarlandStrand, Lotus } from './ornaments/Ornaments.jsx';
 
-const DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(VENUE.mapsQuery)}`;
+const DIRECTIONS_URL = VENUE.mapsUrl;
 
 const NICHE = {
   engagement: ['#F8E3E6', '#E9B7C0'],

@@ -7,8 +7,6 @@ import { HeroV2 } from './components/HeroV2.jsx';
 import { StoryNote } from './components/StoryNote.jsx';
 import { SaveTheDate } from './components/SaveTheDate.jsx';
 import { Celebrations } from './components/Celebrations.jsx';
-import { DressCode } from './components/DressCode.jsx';
-import { Rsvp } from './components/Rsvp.jsx';
 import { PhotoStack } from './components/PhotoStack.jsx';
 import { Venue } from './components/Venue.jsx';
 import { Footer } from './components/Footer.jsx';
@@ -37,8 +35,6 @@ export default function App() {
               <StoryNote />
               <SaveTheDate />
               <Celebrations />
-              <DressCode />
-              <Rsvp />
               <PhotoStack />
               <Venue />
               <Footer />
