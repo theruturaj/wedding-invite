@@ -4,6 +4,9 @@ import { useLanguage } from '../i18n/LanguageContext.jsx';
 import { STORY_PHOTOS } from '../i18n/content.js';
 import { Reveal } from './Reveal.jsx';
 import { WaxSeal } from './ornaments/Paper.jsx';
+import { deckledPolygon } from '../lib/deckle.js';
+
+const CLIPS = STORY_PHOTOS.map((_, i) => deckledPolygon({ seed: 40 + i * 7, depth: 1.4, steps: 34 }));
 
 const TILT = [-2, 4, -5, 3, -3];
 const THRESHOLD = 90;
@@ -49,7 +52,10 @@ export function PhotoStack() {
               whileDrag={reduce ? undefined : { scale: 1.03, rotate: 0 }}
               aria-hidden={!top}
             >
-              <img src={photo.src} alt={p.alts[photo.key]} draggable="false" loading="lazy" />
+              <span className="deckle" style={{ clipPath: CLIPS[photoIndex] }} />
+              <span className="frame-photo">
+                <img src={photo.src} alt={p.alts[photo.key]} draggable="false" loading="lazy" />
+              </span>
             </motion.figure>
           );
         })}

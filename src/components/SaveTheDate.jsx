@@ -6,10 +6,14 @@ import { getTimeParts, localizeDigits } from '../lib/format.js';
 import { downloadCalendar } from '../lib/calendar.js';
 import { useNow } from '../lib/hooks.js';
 import { Reveal } from './Reveal.jsx';
-import { TornEdge } from './ornaments/Paper.jsx';
+import { deckledPolygon } from '../lib/deckle.js';
+import { haptic } from '../lib/haptics.js';
+import { PaperGrain } from './ornaments/Paper.jsx';
 
 const TARGET = Date.parse(WEDDING_START);
 const REVEAL_AT = 0.35;
+// The cover is torn along its left edge only — that's the edge the guest pulls.
+const COVER_CLIP = deckledPolygon({ seed: 9, depth: 3.2, steps: 30, sides: ['left'] });
 
 function MiniCountdown() {
   const { t, lang } = useLanguage();
@@ -37,11 +41,13 @@ export function SaveTheDate() {
   const cardRef = useRef(null);
   const x = useMotionValue(0);
   const [revealed, setRevealed] = useState(false);
-  const curlOpacity = useTransform(x, [0, 40], [0.4, 1]);
+  const curlOpacity = useTransform(x, [0, 24], [0, 1]);
+  const curlWidth = useTransform(x, [0, 160], [10, 30]);
 
   const reveal = () => {
     if (revealed) return;
     const width = cardRef.current?.offsetWidth ?? 400;
+    haptic('reveal');
     animate(x, width * 1.15, { duration: reduce ? 0 : 0.7, ease: [0.22, 1, 0.36, 1] }).then(() => setRevealed(true));
   };
 
@@ -57,20 +63,23 @@ export function SaveTheDate() {
       <Reveal as="h2" id="sd-title" className="caps-title single" delay={0.1}>{s.title}</Reveal>
 
       <Reveal className="sd-card" delay={0.2}>
-        <div ref={cardRef} className="sd-date">
+        <div ref={cardRef} className={`sd-date${revealed ? ' shine' : ''}`}>
           <motion.div
             className="sd-date-inner"
             initial={false}
             animate={revealed ? { scale: [0.96, 1], opacity: [0.6, 1] } : {}}
             transition={{ duration: 0.8 }}
           >
-            <span className="sd-weekday">{s.weekday}</span>
-            <span className="sd-day">{s.day}</span>
-            <span className="sd-month">{s.month} {s.year}</span>
-            <span className="sd-time">{s.time}</span>
+            <span className="sd-weekday foil">{s.weekday}</span>
+            <span className="sd-day foil">{s.day}</span>
+            <span className="sd-month foil">{s.month} {s.year}</span>
+            <span className="sd-time foil">{s.time}</span>
           </motion.div>
         </div>
 
+        {!revealed && (
+          <motion.div className="sd-curl-edge" style={{ x, opacity: curlOpacity, width: curlWidth }} aria-hidden="true" />
+        )}
         {!revealed && (
           <motion.div
             className="sd-cover"
@@ -82,8 +91,7 @@ export function SaveTheDate() {
             onDragEnd={onDragEnd}
             aria-hidden="true"
           >
-            <motion.div className="sd-curl" style={{ opacity: curlOpacity }} />
-            <TornEdge side="bottom" className="sd-cover-tear" color="#F4EAD6" seed={5} height={18} />
+            <span className="deckle" style={{ clipPath: COVER_CLIP }}><PaperGrain /></span>
             <motion.span
               className="sd-hint"
               animate={reduce ? undefined : { x: [0, 14, 0] }}

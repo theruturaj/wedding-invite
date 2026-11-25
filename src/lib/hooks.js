@@ -19,3 +19,25 @@ export function useNow(intervalMs = 1000) {
   }, [intervalMs]);
   return now;
 }
+
+/** True while the reader is scrolling down past `offset` px (to tuck floating UI away). */
+export function useScrollingDown(offset = 120) {
+  const [down, setDown] = useState(false);
+  useEffect(() => {
+    let last = window.scrollY;
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        if (Math.abs(y - last) > 6) setDown(y > last && y > offset);
+        last = y;
+        ticking = false;
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [offset]);
+  return down;
+}

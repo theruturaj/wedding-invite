@@ -753,3 +753,176 @@ html[lang='mr'] .pill { font: 15px/1.3 var(--font-deva); letter-spacing: 0; }
 .rsvp-card { padding-bottom: 96px; }
 .rsvp .btn-outline.solid { letter-spacing: 0.14em; line-height: 1.3; }
 .ev-garland { width: 22px; top: -14px; }
+
+/* =====================================================================
+   Realism pass — real paper, light from the top-left, physical objects
+   ===================================================================== */
+:root {
+  --tex: url('/tex/paper.svg?v=3'), url('/tex/mottle.svg?v=3');
+  --tex-size: 320px 320px, 600px 600px;
+  --shadow-paper: 0 1px 1px rgba(60, 35, 10, 0.12), 3px 8px 14px -6px rgba(60, 35, 10, 0.28), 8px 26px 44px -22px rgba(60, 35, 10, 0.4);
+  --font-hand: 'Kalam', 'Tiro Devanagari Marathi', cursive;
+}
+
+.paper-grain {
+  position: absolute; inset: 0; pointer-events: none; border-radius: inherit; z-index: 0;
+  background-image: var(--tex); background-size: var(--tex-size);
+  mix-blend-mode: multiply; opacity: 0.55;
+}
+
+body {
+  background-color: #e9dcc3;
+  background-image: var(--tex); background-size: var(--tex-size); background-blend-mode: multiply;
+}
+.page {
+  background-color: var(--paper-v2);
+  background-image: var(--tex); background-size: var(--tex-size); background-blend-mode: multiply;
+  box-shadow: 0 0 0 1px rgba(154, 115, 48, 0.12), 10px 30px 80px -30px rgba(80, 50, 20, 0.45), inset 0 0 120px rgba(150, 110, 60, 0.16);
+}
+.v2-hero { background: radial-gradient(ellipse at 30% 8%, rgba(255, 249, 235, 0.85), rgba(255, 249, 235, 0) 60%); }
+.v2-hero::before {
+  /* warm morning light falling from the top-left */
+  content: ''; position: absolute; inset: -20% -10% auto -30%; height: 90%; pointer-events: none; z-index: 0;
+  background: radial-gradient(ellipse at 20% 10%, rgba(255, 214, 140, 0.35), transparent 60%);
+  animation: breathe 9s ease-in-out infinite;
+}
+@keyframes breathe { 0%, 100% { opacity: 0.75; } 50% { opacity: 1; } }
+.note {
+  background-color: var(--paper-deep);
+  background-image: var(--tex); background-size: var(--tex-size); background-blend-mode: multiply;
+}
+
+/* Painted illustrations: watercolour filter + printed onto the paper. */
+.mandap { mix-blend-mode: multiply; }
+.ev-niche, .rack, .swags { filter: url(#f-paint); }
+.ev-niche { box-shadow: none; }
+.ev-art { filter: drop-shadow(3px 10px 12px rgba(90, 55, 15, 0.25)); }
+.ev-icon { color: #6d4410; }
+.ev-icon svg { stroke-width: 2; }
+
+/* ---------- Envelope ---------- */
+.envelope-screen { background: #efe3cc; }
+.envelope-screen > .paper-grain { opacity: 0.8; }
+.envelope-wrap { position: relative; align-self: center; display: grid; justify-items: center; }
+.envelope { overflow: visible; filter: none; }
+.env-body, .env-flap { background: #f5ecdc; }
+.env-body { position: absolute; inset: 0; box-shadow: var(--shadow-paper), inset 0 0 40px rgba(150, 110, 60, 0.18); }
+.env-body > .paper-grain, .env-flap > .paper-grain { opacity: 0.7; }
+.env-flap-wrap { filter: drop-shadow(1px 6px 6px rgba(90, 60, 25, 0.28)); }
+.env-flap { position: absolute; inset: 0; clip-path: polygon(0 0, 100% 0, 50% 52%); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.env-flap.face-out { background: linear-gradient(180deg, #f8f0e2, #ecdcc0); }
+.env-flap.face-in { transform: rotateX(180deg); background: #6e1424; }
+.env-liner-art { position: absolute; inset: 0; width: 100%; height: 100%; }
+.env-card {
+  position: absolute; left: 6%; right: 6%; top: 4%; height: 70%; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 8px; text-align: center;
+  background: #fbf6ec; color: #4e3420;
+}
+.env-card > * { position: relative; }
+.env-card-blessing { font: 13px var(--font-deva); color: var(--maroon); }
+.env-card-names { font: 500 30px/1.2 var(--font-serif); }
+.env-card-names i { font-family: var(--font-script); color: var(--gold-ink); }
+html[lang='mr'] .env-card-names { font: 28px/1.4 var(--font-deva-display); color: var(--plum); }
+.env-card-date { font: 500 11px/1.4 var(--font-caps); letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold-ink); }
+html[lang='mr'] .env-card-date { font: 14px var(--font-deva); letter-spacing: 0; }
+.env-seal.half-left { clip-path: polygon(0 0, 52% 0, 46% 22%, 55% 40%, 45% 58%, 53% 76%, 48% 100%, 0 100%); }
+.env-seal.half-right { clip-path: polygon(52% 0, 100% 0, 100% 100%, 48% 100%, 53% 76%, 45% 58%, 55% 40%, 46% 22%); }
+.env-seal { width: 94px; height: 94px; margin: -47px 0 0 -47px; }
+.env-shadow {
+  width: 86%; height: 26px; margin-top: 10px; border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(70, 45, 15, 0.35), transparent 70%); filter: blur(4px);
+}
+.wax-seal { filter: drop-shadow(1px 3px 2px rgba(60, 30, 5, 0.4)) drop-shadow(3px 8px 8px rgba(60, 30, 5, 0.25)); }
+
+/* ---------- Deckled paper (RSVP card, photos, save-the-date cover) ---------- */
+.deckle {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-color: #f8f2e6;
+  background-image: var(--tex); background-size: var(--tex-size); background-blend-mode: multiply;
+}
+.rsvp-card { background: none; box-shadow: none; filter: drop-shadow(1px 2px 1px rgba(60, 30, 10, 0.12)) drop-shadow(4px 14px 16px rgba(60, 30, 10, 0.28)); }
+.rsvp-card > :not(.deckle) { position: relative; z-index: 1; }
+.rsvp-card > .rsvp-seal { position: absolute; z-index: 2; }
+.field-input { font: 400 22px/1.2 var(--font-hand); color: #1f2a5c; padding-top: 10px; }
+html[lang='mr'] .field-input { font: 400 21px/1.3 var(--font-hand); }
+.field-input::placeholder { font-family: var(--font-serif); font-size: 17px; color: #b3a080; }
+.rsvp-back, .rsvp-pocket { background-image: var(--tex), linear-gradient(180deg, #5c0e1b, #7e1a2b); background-size: var(--tex-size), 100% 100%; background-blend-mode: multiply; }
+.rsvp-pocket { background-image: var(--tex), linear-gradient(160deg, #94283a, #6a1222 70%); }
+.rsvp-pocket::after {
+  /* folded side flaps catch the light differently */
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(115deg, rgba(255, 255, 255, 0.08) 0 50%, rgba(0, 0, 0, 0.12) 50% 100%);
+}
+
+.frame { background: none; box-shadow: none; padding: 14px; filter: drop-shadow(1px 2px 1px rgba(0, 0, 0, 0.14)) drop-shadow(5px 16px 18px rgba(60, 30, 10, 0.3)); }
+.frame .deckle { background-color: #fbf8f1; }
+.frame-photo { position: relative; z-index: 1; height: 100%; overflow: hidden; border-radius: 1px; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08); }
+.frame-photo::after {
+  /* glossy print sheen */
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(125deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 38%, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 0.12));
+  mix-blend-mode: screen;
+}
+
+/* ---------- Save the date: velvet card, gold foil, torn cover with a curl ---------- */
+.sd-card { overflow: visible; box-shadow: none; }
+.sd-date {
+  border-radius: 14px; box-shadow: var(--shadow-paper);
+  background-image: url('/tex/paper.svg?v=2'), radial-gradient(ellipse at 30% 20%, #9b2638, #5c0e1b 75%);
+  background-size: 320px 320px, 100% 100%; background-blend-mode: multiply;
+}
+.foil {
+  background: linear-gradient(110deg, #a8792a 0%, #f6e2a6 22%, #c9963e 40%, #f9eab8 55%, #b8862f 72%, #ecd08b 100%);
+  background-size: 250% 100%; background-position: 100% 0;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 1px 0 rgba(40, 0, 8, 0.6));
+}
+.sd-date.shine .foil { animation: foil-shine 2.4s var(--ease) 0.2s 1 both; }
+@keyframes foil-shine { from { background-position: 100% 0; } to { background-position: 0% 0; } }
+.sd-cover { background: none; border-radius: 14px; }
+.sd-cover .deckle { border-radius: 14px; background-color: #f4ead6; }
+.sd-cover .sd-hint { position: relative; z-index: 1; }
+.sd-curl-edge {
+  position: absolute; top: 0; bottom: 0; left: -6px; width: 22px; z-index: 3; pointer-events: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #cdb98f 0%, #fbf4e4 35%, #fffaf0 50%, #e4d2ac 80%, #b69d70 100%);
+  box-shadow: -10px 0 18px rgba(40, 10, 0, 0.35);
+}
+.sd-cover-tear { display: none; }
+
+/* ---------- Petals with depth ---------- */
+.petal { background: none !important; border-radius: 0; animation-name: petal-fall; }
+.petal > i {
+  display: block; width: 100%; height: 100%;
+  background-size: contain; background-repeat: no-repeat; background-position: center;
+  animation: petal-flutter ease-in-out infinite alternate;
+}
+.petal.p0 > i { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 26'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='1' x2='0' y2='0'%3E%3Cstop offset='0' stop-color='%23c8460c'/%3E%3Cstop offset='1' stop-color='%23ffb02e'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M10 26C4 20 1 12 2 6c1-2 3-1 4 0 1-3 3-4 4-4s3 1 4 4c1-1 3-2 4 0 1 6-2 14-8 20z' fill='url(%23g)'/%3E%3Cpath d='M10 24V6' stroke='%23a33a08' stroke-width='.5' opacity='.5'/%3E%3C/svg%3E"); }
+.petal.p1 > i { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 26'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='1' x2='0' y2='0'%3E%3Cstop offset='0' stop-color='%23e39a06'/%3E%3Cstop offset='1' stop-color='%23ffe066'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M10 26C4 20 1 12 2 6c1-2 3-1 4 0 1-3 3-4 4-4s3 1 4 4c1-1 3-2 4 0 1 6-2 14-8 20z' fill='url(%23g)'/%3E%3C/svg%3E"); }
+.petal.p2 > i { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 24'%3E%3Cdefs%3E%3CradialGradient id='g' cx='.5' cy='.85' r='.9'%3E%3Cstop offset='0' stop-color='%23a3123a'/%3E%3Cstop offset='.6' stop-color='%23d93a66'/%3E%3Cstop offset='1' stop-color='%23f5a3bd'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cpath d='M11 24C3 20 0 13 2 7 4 2 9 1 11 4c2-3 7-2 9 3 2 6-1 13-9 17z' fill='url(%23g)'/%3E%3C/svg%3E"); }
+.petal.near { filter: blur(1.2px); opacity: 0.85; }
+.petal.far { filter: blur(0.4px); opacity: 0.55; }
+@keyframes petal-flutter {
+  0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+  33% { transform: rotateX(55deg) rotateY(-20deg) rotateZ(25deg); }
+  66% { transform: rotateX(-30deg) rotateY(50deg) rotateZ(-15deg); }
+  100% { transform: rotateX(70deg) rotateY(15deg) rotateZ(40deg); }
+}
+.petals { perspective: 600px; }
+
+/* ---------- Floating language pill tucks away while reading ---------- */
+.lang-toggle { transition: transform 0.35s var(--ease), opacity 0.35s var(--ease); }
+.lang-toggle.tucked { transform: translateY(-140%); opacity: 0; pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .v2-hero::before, .petal > i { animation: none; }
+}
+/* envelope fixes: no filter on the flipping flap (filters flatten 3D), smaller on phones */
+.env-flap-wrap { filter: none; }
+.env-body .flap-shadow { transition: opacity 0.5s ease; }
+.env-body.open .flap-shadow { opacity: 0; }
+.envelope { width: min(72vw, 360px, 52svh); }
+.envelope-screen { padding-top: 15svh; }
+.env-flap { backface-visibility: visible; -webkit-backface-visibility: visible; }
+.env-flap.face-in { transform: none; }
+.env-card { justify-content: flex-start; padding-top: 7%; }

@@ -1,22 +1,32 @@
 import { useMemo } from 'react';
 import { useReducedMotion } from 'framer-motion';
 
-const COLORS = ['#F7A51C', '#F2701A', '#FFCB2E', '#E86A9A', '#C8202E'];
+const KINDS = ['p0', 'p1', 'p2', 'p0', 'p1'];
 
-/** Falling marigold and rose petals — pure CSS animation, decorative only. */
-export function Petals({ count = 18 }) {
+/**
+ * Marigold and rose petals drifting down. Each petal falls and sways (outer span)
+ * while tumbling in 3D (inner element); a few are larger and blurred as if close
+ * to the camera, others small and soft as if far away.
+ */
+export function Petals({ count = 14 }) {
   const reduce = useReducedMotion();
   const petals = useMemo(
     () =>
-      Array.from({ length: count }, (_, i) => ({
-        id: i,
-        left: `${(i * 97) % 100}%`,
-        size: 8 + ((i * 7) % 9),
-        duration: 11 + ((i * 13) % 10),
-        delay: -((i * 1.7) % 18),
-        drift: ((i % 5) - 2) * 40,
-        color: COLORS[i % COLORS.length],
-      })),
+      Array.from({ length: count }, (_, i) => {
+        const depth = i % 5 === 0 ? 'near' : i % 3 === 0 ? 'far' : '';
+        const base = depth === 'near' ? 22 : depth === 'far' ? 9 : 14;
+        return {
+          id: i,
+          kind: KINDS[i % KINDS.length],
+          depth,
+          left: `${(i * 37 + 11) % 100}%`,
+          size: base + ((i * 7) % 5),
+          fall: (depth === 'near' ? 9 : depth === 'far' ? 20 : 14) + ((i * 13) % 6),
+          flutter: 1.6 + ((i * 7) % 10) / 6,
+          delay: -((i * 2.3) % 20),
+          drift: ((i % 5) - 2) * 45,
+        };
+      }),
     [count],
   );
   if (reduce) return null;
@@ -25,17 +35,18 @@ export function Petals({ count = 18 }) {
       {petals.map((p) => (
         <span
           key={p.id}
-          className="petal"
+          className={`petal ${p.kind} ${p.depth}`}
           style={{
             left: p.left,
             width: p.size,
-            height: p.size * 1.3,
-            background: p.color,
-            animationDuration: `${p.duration}s`,
+            height: p.size * 1.25,
+            animationDuration: `${p.fall}s`,
             animationDelay: `${p.delay}s`,
             '--drift': `${p.drift}px`,
           }}
-        />
+        >
+          <i style={{ animationDuration: `${p.flutter}s` }} />
+        </span>
       ))}
     </div>
   );

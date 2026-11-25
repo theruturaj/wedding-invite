@@ -76,7 +76,7 @@ export function Mandap({ className = '', label }) {
       <rect width="400" height="380" fill="url(#m-sky)" />
 
       {/* hills, trees and garden */}
-      <motion.g {...rise(0)}>
+      <motion.g {...rise(0)} filter="url(#f-paint)">
         <path d="M0 250 C60 225 120 236 200 240 C280 236 340 222 400 246 V380 H0 Z" fill="url(#m-grass)" />
         {[[34, 228, 20], [70, 238, 14], [356, 226, 22], [322, 238, 13]].map(([cx, cy, r]) => (
           <g key={cx}>
@@ -95,7 +95,7 @@ export function Mandap({ className = '', label }) {
       </motion.g>
 
       {/* stone steps leading up */}
-      <motion.g {...rise(0.15)}>
+      <motion.g {...rise(0.15)} filter="url(#f-paint)">
         {[0, 1, 2, 3].map((i) => (
           <path
             key={i}
@@ -108,7 +108,7 @@ export function Mandap({ className = '', label }) {
       </motion.g>
 
       {/* mandap structure */}
-      <motion.g {...rise(0.35)}>
+      <motion.g {...rise(0.35)} filter="url(#f-paint)">
         <rect x="70" y="282" width="260" height="18" rx="3" fill="#C9B08A" stroke="#A88B62" />
         <rect x="80" y="276" width="240" height="8" fill="#B5986F" />
         <Pillar x={122} top={142} bottom={278} w={12} shade="#9C6A36" />

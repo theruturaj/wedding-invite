@@ -29,6 +29,35 @@ export function SvgDefs() {
           <stop offset="0" stopColor="#E86A9A" />
           <stop offset="1" stopColor="#FBD3E2" />
         </linearGradient>
+
+        {/* Watercolour: wobbly edges + pigment granulation, so vector art reads as painted on paper. */}
+        <filter id="f-paint" x="-4%" y="-4%" width="108%" height="108%" colorInterpolationFilters="sRGB">
+          <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" seed="3" result="warp" />
+          <feDisplacementMap in="SourceGraphic" in2="warp" scale="5" xChannelSelector="R" yChannelSelector="G" result="wobbly" />
+          <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="9" result="grain" />
+          <feColorMatrix in="grain" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 -0.55 1.12" result="grainAlpha" />
+          <feComposite in="wobbly" in2="grainAlpha" operator="in" result="grainy" />
+          <feGaussianBlur in="grainy" stdDeviation="0.3" result="soft" />
+          <feMorphology in="SourceAlpha" operator="erode" radius="1.2" result="inner" />
+          <feComposite in="SourceAlpha" in2="inner" operator="out" result="rim" />
+          <feDisplacementMap in="rim" in2="warp" scale="5" xChannelSelector="R" yChannelSelector="G" result="rimW" />
+          <feFlood floodColor="#3b2410" floodOpacity="0.28" />
+          <feComposite in2="rimW" operator="in" result="edge" />
+          <feMerge>
+            <feMergeNode in="soft" />
+            <feMergeNode in="edge" />
+          </feMerge>
+        </filter>
+
+        {/* Pressed wax / metal relief lit from the top-left. */}
+        <filter id="f-relief" x="-10%" y="-10%" width="120%" height="120%">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="1.6" result="blur" />
+          <feSpecularLighting in="blur" surfaceScale="3.5" specularConstant="0.75" specularExponent="22" lightingColor="#fff6e6" result="spec">
+            <fePointLight x="-60" y="-80" z="140" />
+          </feSpecularLighting>
+          <feComposite in="spec" in2="SourceAlpha" operator="in" result="specIn" />
+          <feComposite in="SourceGraphic" in2="specIn" operator="arithmetic" k1="0" k2="1" k3="0.55" k4="0" />
+        </filter>
       </defs>
     </svg>
   );

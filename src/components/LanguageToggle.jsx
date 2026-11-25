@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
 import { LANGS, content } from '../i18n/content.js';
+import { useScrollingDown } from '../lib/hooks.js';
 
 export function LanguageToggle() {
   const { lang, setLang } = useLanguage();
+  const tucked = useScrollingDown();
   return (
-    <div className="lang-toggle" role="group" aria-label="Language / भाषा">
+    <div className={`lang-toggle${tucked ? ' tucked' : ''}`} role="group" aria-label="Language / भाषा">
       {LANGS.map((code) => (
         <button
           key={code}

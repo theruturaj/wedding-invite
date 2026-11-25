@@ -5,6 +5,9 @@ import { RSVP_WHATSAPP } from '../i18n/content.js';
 import { localizeDigits } from '../lib/format.js';
 import { MAX_GUESTS, buildRsvpMessage, buildWhatsAppUrl, clampGuests, validateRsvp } from '../lib/rsvp.js';
 import { WaxSeal } from './ornaments/Paper.jsx';
+import { deckledPolygon } from '../lib/deckle.js';
+
+const CARD_CLIP = deckledPolygon({ seed: 17, depth: 1.1, steps: 36 });
 
 const EMPTY = { name: '', attending: null, guests: 1 };
 
@@ -45,6 +48,7 @@ export function Rsvp() {
           viewport={{ once: true, margin: '0px 0px -20% 0px' }}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
         >
+          <span className="deckle" style={{ clipPath: CARD_CLIP }} />
           <div className="rsvp-seal"><WaxSeal tone="maroon" monogram="R G" size={78} /></div>
           <p className="caps-eyebrow small">{r.eyebrow}</p>
           <h2 id="rsvp-title" className="serif-title">{r.title}</h2>
