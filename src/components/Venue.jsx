@@ -1,30 +1,14 @@
 import { useCallback, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
-import { content, EVENTS, VENUE } from '../i18n/content.js';
-import { buildIcs } from '../lib/format.js';
+import { VENUE } from '../i18n/content.js';
+import { downloadCalendar } from '../lib/calendar.js';
 import { Reveal, SectionHeading } from './Reveal.jsx';
 import { Lotus } from './ornaments/Ornaments.jsx';
 
 const mapsQuery = encodeURIComponent(VENUE.mapsQuery);
 const DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${mapsQuery}`;
 const EMBED_URL = `https://www.google.com/maps?q=${mapsQuery}&output=embed`;
-
-function downloadCalendar() {
-  const names = content.en.events.items;
-  const ics = buildIcs(
-    EVENTS.map((ev) => ({ ...ev, title: `${names[ev.id].name} · Rugved & Gayatri` })),
-    { location: VENUE.calendarLocation },
-  );
-  const url = URL.createObjectURL(new Blob([ics], { type: 'text/calendar;charset=utf-8' }));
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'rugved-gayatri-wedding.ics';
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-}
 
 export function Venue() {
   const { t } = useLanguage();

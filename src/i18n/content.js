@@ -1,9 +1,16 @@
 // All copy for the invitation, in English and Marathi.
 // Source: the family's printed invitation cards (see /reference).
+// Dress-code suggestions and the RSVP WhatsApp number are placeholders to confirm.
 
 export const LANGS = ['en', 'mr'];
 
 export const WEDDING_START = '2026-11-29T18:30:00+05:30';
+
+/** Put the family's WhatsApp number here (with country code) to receive RSVPs directly. */
+export const RSVP_WHATSAPP = '';
+
+/** Drop an mp3 at public/audio/music.mp3 and a play/pause button appears automatically. */
+export const MUSIC_SRC = '/audio/music.mp3';
 
 export const VENUE = {
   mapsQuery: 'Vitthal Mangalam Lawns, Varye, Satara, Maharashtra',
@@ -18,72 +25,124 @@ export const EVENTS = [
   { id: 'varmala', icon: 'garland', start: '2026-11-29T18:30:00+05:30', hours: 3, highlight: true },
 ];
 
+export const DRESS_CODES = [
+  { id: 'engagement', palette: ['#F2C4C4', '#CFE5D6', '#F1E3B4', '#D9C8E6'] },
+  { id: 'haldi', palette: ['#F5C518', '#F28C28', '#FFF6DF', '#86A93F'] },
+  { id: 'sangeet', palette: ['#0F6B4F', '#2A4594', '#B0246A', '#C9A227'] },
+  { id: 'wedding', palette: ['#7E1A2B', '#136F63', '#C9962F', '#F6EEDB'] },
+];
+
+export const STORY_PHOTOS = [
+  { src: '/img/couple.jpg', key: 'couple' },
+  { src: '/img/card-marathi.jpg', key: 'cardMr' },
+  { src: '/img/card-english.jpg', key: 'cardEn' },
+];
+
 export const content = {
   en: {
     langName: 'English',
-    switchTo: 'मराठी',
-    gate: {
-      blessing: '|| Shri Ganeshaya Namah ||',
-      invited: 'You are cordially invited',
-      to: 'to the wedding of',
-      names: ['Rugved', 'Gayatri'],
-      open: 'Open Invitation',
-      openMr: 'मराठीत उघडा',
+    envelope: {
+      tap: 'Tap to open',
+      seal: 'Open the invitation',
+      langHint: 'Choose language',
     },
     hero: {
-      blessing: '|| श्री गणेशाय नमः ||',
-      eyebrow: 'With the blessings of the Almighty and our elders',
-      line: 'We are delighted to invite you to the wedding ceremony of',
+      blessing: '|| Shri Ganeshaya Namah ||',
+      eyebrow: 'The wedding of',
       groom: 'Rugved',
+      weds: 'weds',
       bride: 'Gayatri',
-      date: 'Sunday · 29 November 2026',
-      place: 'Varye, Satara',
-      scroll: 'Scroll',
+      scroll: 'Scroll down',
+      mandapAlt: 'Illustrated wedding mandap with marigold garlands and a sacred fire',
     },
-    couple: {
-      eyebrow: 'Two families, one celebration',
-      title: 'We joyfully announce the wedding of our children',
-      artAlt: 'Illustration of the groom in a pheta and the bride in a Paithani saree',
+    story: {
+      title: ['Two souls', 'one destiny'],
+      sub: 'A bond blessed for seven lifetimes',
+      greeting: 'Dear Friends and Family',
+      body: 'With the blessings of Lord Ganesha and our elders, we invite you to share in the joy as our children begin their forever.',
       groom: {
-        prefix: 'Chi. Dr.',
-        name: 'Rugved',
-        role: 'Groom',
+        name: 'Dr. Rugved',
         degree: 'MBBS, MD Paediatrics',
-        family: [
-          'Grandson of Late Shri Ramesh Tatyaso Uttekar (Bapu)',
-          'Eldest son of Dr. Sau. Neela & Shri Ranjeet Ramesh Uttekar',
-          'Gorakhpur (Pirwadi), Satara',
-        ],
+        family: 'Grandson of Late Shri Ramesh Tatyaso Uttekar (Bapu); eldest son of Dr. Sau. Neela & Shri Ranjeet Ramesh Uttekar, Gorakhpur (Pirwadi), Satara',
       },
       bride: {
-        prefix: 'Chi. Sau. Kan. Dr.',
-        name: 'Gayatri',
-        role: 'Bride',
+        name: 'Dr. Gayatri',
         degree: 'MBBS · Founder, Rudira Setu Global (OPC) Pvt. Ltd.',
-        family: [
-          'Beloved daughter of Sau. Priya & Shri Pandurang Narayan Dalvi',
-          'Krishnanagar, Khed, Satara',
-        ],
+        family: 'Daughter of Sau. Priya & Shri Pandurang Narayan Dalvi, Krishnanagar, Khed, Satara',
       },
+      and: '&',
     },
-    countdown: {
-      eyebrow: 'Shubh Muhurt',
-      title: 'Counting down to forever',
-      when: 'Sunday, 29 November 2026 · 6:30 PM',
-      units: ['Days', 'Hours', 'Minutes', 'Seconds'],
-      done: 'The auspicious moment is here — thank you for your blessings!',
+    saveDate: {
+      eyebrow: 'Mark your calendar',
+      title: 'Save the date',
+      swipe: 'Swipe to reveal',
+      reveal: 'Reveal the date',
+      day: '29',
+      month: 'Nov',
+      year: '2026',
+      weekday: 'Sunday',
+      time: 'Half past six in the evening',
+      calendar: 'Add to calendar',
+      units: ['Days', 'Hrs', 'Min', 'Sec'],
     },
-    events: {
-      eyebrow: 'Wedding festivities',
+    celebrations: {
+      eyebrow: 'You are invited to our',
       title: 'Celebrations',
-      days: { '2026-11-28': 'Saturday, 28 November', '2026-11-29': 'Sunday, 29 November' },
+      scratch: 'Scratch to reveal',
+      revealBtn: 'Reveal',
+      venueLabel: 'Venue',
+      venue: 'Vitthal Mangalam Lawns',
+      venueSub: 'Limbkhind, Varye, Satara',
+      directions: 'Get directions',
       muhurt: 'Shubh Muhurt',
       items: {
-        engagement: { name: 'Engagement', time: '10:00 AM', note: 'Exchange of rings and blessings' },
-        haldi: { name: 'Haldi', time: '4:00 PM', note: 'Turmeric, laughter and yellow everywhere' },
-        sangeet: { name: 'Sangeet', time: '7:00 PM', note: 'An evening of music and dance' },
-        vidhi: { name: 'Vivah Vidhi', time: '9:30 AM', note: 'Traditional wedding rituals' },
-        varmala: { name: 'Varmala', time: '6:30 PM', note: 'Exchange of garlands at the auspicious hour' },
+        engagement: { name: 'Engagement', when: 'Saturday, 28 Nov · 10:00 AM' },
+        haldi: { name: 'Haldi Ceremony', when: 'Saturday, 28 Nov · 4:00 PM' },
+        sangeet: { name: 'Sangeet Night', when: 'Saturday, 28 Nov · 7:00 PM' },
+        vidhi: { name: 'Vivah Vidhi', when: 'Sunday, 29 Nov · 9:30 AM' },
+        varmala: { name: 'Varmala', when: 'Sunday, 29 Nov · 6:30 PM' },
+      },
+    },
+    dress: {
+      eyebrow: 'What to wear',
+      title: 'Dress code',
+      swipe: 'Swipe to explore',
+      women: 'Women',
+      men: 'Men',
+      prev: 'Previous look',
+      next: 'Next look',
+      items: {
+        engagement: { name: 'Engagement', women: 'Soft pastels — sarees or anarkalis', men: 'Pastel kurta or bandhgala' },
+        haldi: { name: 'Haldi', women: 'Sunshine yellows — light sarees or sharara sets', men: 'Yellow kurta with white pyjama' },
+        sangeet: { name: 'Sangeet', women: 'Jewel tones with sparkle — lehengas or indo-western', men: 'Nehru jacket or festive sherwani' },
+        wedding: { name: 'Wedding Day', women: 'Paithani or nauvari saree', men: 'Kurta with a pheta' },
+      },
+    },
+    rsvp: {
+      eyebrow: 'Kindly reply',
+      title: 'RSVP',
+      sub: 'Please let us know by 26 November',
+      name: 'Your name',
+      namePh: 'Full name',
+      accept: 'Joyfully accept',
+      decline: 'Regretfully decline',
+      guests: 'Number of guests',
+      fewer: 'Fewer guests',
+      more: 'More guests',
+      send: 'Send reply on WhatsApp',
+      errors: { required: 'Please enter your name', tooLong: 'Please use a shorter name', attending: 'Please choose an option' },
+      thanks: 'Thank you! Your reply is ready in WhatsApp.',
+      again: 'Edit reply',
+    },
+    photos: {
+      eyebrow: 'Our story',
+      title: 'Moments to treasure',
+      hint: 'Swipe left or right to turn the photo',
+      next: 'Next photo',
+      alts: {
+        couple: 'Illustration of the groom in a pheta and the bride in a Paithani saree',
+        cardMr: 'Marathi invitation card with Lord Ganesha and temple bells',
+        cardEn: 'English invitation card with lotus flowers and a decorated elephant',
       },
     },
     venue: {
@@ -95,90 +154,118 @@ export const content = {
       calendar: 'Add to Calendar',
       mapTitle: 'Map showing Vitthal Mangalam Lawns, Varye, Satara',
     },
-    gallery: {
-      eyebrow: 'Patrika',
-      title: 'Our Invitation Cards',
-      hint: 'Tap a card to view it larger',
-      cards: [
-        { src: '/img/card-marathi.jpg', alt: 'Marathi wedding invitation card with Lord Ganesha, temple bells and the couple' },
-        { src: '/img/card-english.jpg', alt: 'English wedding invitation card with lotus flowers and a decorated elephant' },
-      ],
-      close: 'Close',
-    },
     footer: {
       presence: 'Your presence and prayers will make our celebration truly special.',
       inviter: 'With warm regards',
       family: 'The Uttekar Family',
-      thanks: 'Your presence would be the greatest gift we could receive!',
     },
+    music: { play: 'Play music', pause: 'Pause music' },
   },
 
   mr: {
     langName: 'मराठी',
-    switchTo: 'English',
-    gate: {
-      blessing: '|| श्री गणेशाय नमः ||',
-      invited: 'आपणांस सस्नेह निमंत्रण',
-      to: 'शुभविवाह',
-      names: ['ऋग्वेद', 'गायत्री'],
-      open: 'निमंत्रण उघडा',
-      openEn: 'Open in English',
+    envelope: {
+      tap: 'उघडण्यासाठी टॅप करा',
+      seal: 'निमंत्रण उघडा',
+      langHint: 'भाषा निवडा',
     },
     hero: {
       blessing: '|| श्री गणेशाय नमः ||',
-      eyebrow: 'श्री कृपेने व वडीलधाऱ्यांच्या आशीर्वादाने',
-      line: 'शुभ मंगल विवाहासाठी आग्रहाचे निमंत्रण',
+      eyebrow: 'शुभविवाह',
       groom: 'ऋग्वेद',
+      weds: 'आणि',
       bride: 'गायत्री',
-      date: 'रविवार · २९ नोव्हेंबर २०२६',
-      place: 'वर्ये, सातारा',
       scroll: 'पुढे पहा',
+      mandapAlt: 'झेंडूच्या माळा व होमकुंड असलेला विवाह मंडप',
     },
-    couple: {
-      eyebrow: 'दोन परिवार, एक आनंदसोहळा',
-      title: 'आमच्या मुलांच्या शुभविवाहाचे सप्रेम निमंत्रण',
-      artAlt: 'फेटा घातलेला वर आणि पैठणी नेसलेली वधू यांचे चित्र',
+    story: {
+      title: ['दोन जीव', 'एक नियती'],
+      sub: 'सात जन्मांचे पवित्र बंधन',
+      greeting: 'सस्नेह नमस्कार',
+      body: 'श्री गणेशाच्या कृपेने व वडीलधाऱ्यांच्या आशीर्वादाने आमच्या मुलांच्या शुभ मंगल विवाहासाठी आपणांस आग्रहाचे निमंत्रण.',
       groom: {
-        prefix: 'चि. डॉ.',
-        name: 'ऋग्वेद',
-        role: 'वर',
+        name: 'चि. डॉ. ऋग्वेद',
         degree: 'MBBS, MD Paediatrics',
-        family: [
-          'कै. रमेश तात्यासो उत्तेकर (बापू) यांचे नातू',
-          'व डॉ. सौ. नीला व श्री. रणजित रमेश उत्तेकर',
-          'रा. गोरखपूर (पिरवाडी), सातारा यांचे ज्येष्ठ सुपुत्र',
-        ],
+        family: 'कै. रमेश तात्यासो उत्तेकर (बापू) यांचे नातू व डॉ. सौ. नीला व श्री. रणजित रमेश उत्तेकर, रा. गोरखपूर (पिरवाडी), सातारा यांचे ज्येष्ठ सुपुत्र',
       },
       bride: {
-        prefix: 'चि. सौ. कां. डॉ.',
-        name: 'गायत्री',
-        role: 'वधू',
+        name: 'चि. सौ. कां. डॉ. गायत्री',
         degree: 'MBBS, Founder, Rudira Setu Global (OPC) Pvt. Ltd.',
-        family: [
-          'सौ. प्रिया व श्री. पांडुरंग नारायण दळवी',
-          'रा. कृष्णानगर, खेड, सातारा',
-          'यांची सुकन्या',
-        ],
+        family: 'सौ. प्रिया व श्री. पांडुरंग नारायण दळवी, रा. कृष्णानगर, खेड, सातारा यांची सुकन्या',
       },
+      and: 'व',
     },
-    countdown: {
-      eyebrow: 'विवाह मुहूर्त',
-      title: 'शुभ घटिका समीप आली',
-      when: 'रविवार, दि. २९/११/२०२६ रोजी सायं. ०६ वा. ३० मि.',
+    saveDate: {
+      eyebrow: 'दिनांक लक्षात ठेवा',
+      title: 'विवाह मुहूर्त',
+      swipe: 'उघडण्यासाठी सरकवा',
+      reveal: 'तारीख पहा',
+      day: '२९',
+      month: 'नोव्हेंबर',
+      year: '२०२६',
+      weekday: 'रविवार',
+      time: 'सायं. ०६ वा. ३० मि.',
+      calendar: 'कॅलेंडरमध्ये जोडा',
       units: ['दिवस', 'तास', 'मिनिटे', 'सेकंद'],
-      done: 'शुभ मुहूर्त आला — आपल्या शुभाशीर्वादांसाठी मनःपूर्वक धन्यवाद!',
     },
-    events: {
-      eyebrow: 'विवाह सोहळे',
+    celebrations: {
+      eyebrow: 'आपणांस सस्नेह निमंत्रण',
       title: 'मंगल कार्यक्रम',
-      days: { '2026-11-28': 'शनिवार, २८ नोव्हेंबर', '2026-11-29': 'रविवार, २९ नोव्हेंबर' },
+      scratch: 'घासून पहा',
+      revealBtn: 'पहा',
+      venueLabel: 'स्थळ',
+      venue: 'विठ्ठल मंगलम् लॉन्स',
+      venueSub: 'लिंबखिंड, वर्ये, सातारा',
+      directions: 'मार्ग पहा',
       muhurt: 'शुभ मुहूर्त',
       items: {
-        engagement: { name: 'साखरपुडा', time: 'सकाळी १०:००', note: 'अंगठी व आशीर्वादांची देवाणघेवाण' },
-        haldi: { name: 'हळद', time: 'दुपारी ४:००', note: 'हळदीचा पिवळा रंग आणि हास्याची उधळण' },
-        sangeet: { name: 'संगीत', time: 'सायं. ७:००', note: 'गाणी, नृत्य आणि आनंदाची संध्याकाळ' },
-        vidhi: { name: 'विवाह विधी', time: 'सकाळी ९:३०', note: 'पारंपरिक वैदिक विधी' },
-        varmala: { name: 'वरमाला', time: 'सायं. ६:३०', note: 'शुभ मुहूर्तावर माळा घालणे' },
+        engagement: { name: 'साखरपुडा', when: 'शनिवार, २८ नोव्हें. · सकाळी १०:००' },
+        haldi: { name: 'हळद', when: 'शनिवार, २८ नोव्हें. · दुपारी ४:००' },
+        sangeet: { name: 'संगीत', when: 'शनिवार, २८ नोव्हें. · सायं. ७:००' },
+        vidhi: { name: 'विवाह विधी', when: 'रविवार, २९ नोव्हें. · सकाळी ९:३०' },
+        varmala: { name: 'वरमाला', when: 'रविवार, २९ नोव्हें. · सायं. ६:३०' },
+      },
+    },
+    dress: {
+      eyebrow: 'पेहराव',
+      title: 'ड्रेस कोड',
+      swipe: 'पाहण्यासाठी सरकवा',
+      women: 'महिला',
+      men: 'पुरुष',
+      prev: 'मागील',
+      next: 'पुढील',
+      items: {
+        engagement: { name: 'साखरपुडा', women: 'हलके पेस्टल रंग — साडी किंवा अनारकली', men: 'पेस्टल कुर्ता किंवा बंदगळा' },
+        haldi: { name: 'हळद', women: 'पिवळे रंग — हलकी साडी किंवा शरारा', men: 'पिवळा कुर्ता व पांढरा पायजमा' },
+        sangeet: { name: 'संगीत', women: 'गडद, झगमगते रंग — लेहेंगा किंवा इंडो-वेस्टर्न', men: 'नेहरू जॅकेट किंवा शेरवानी' },
+        wedding: { name: 'विवाह दिवस', women: 'पैठणी किंवा नऊवारी साडी', men: 'कुर्ता व फेटा' },
+      },
+    },
+    rsvp: {
+      eyebrow: 'कृपया कळवा',
+      title: 'उपस्थिती',
+      sub: '२६ नोव्हेंबरपर्यंत कळवावे',
+      name: 'आपले नाव',
+      namePh: 'पूर्ण नाव',
+      accept: 'आनंदाने येत आहे',
+      decline: 'येऊ शकत नाही',
+      guests: 'पाहुण्यांची संख्या',
+      fewer: 'कमी',
+      more: 'जास्त',
+      send: 'WhatsApp वर कळवा',
+      errors: { required: 'कृपया आपले नाव लिहा', tooLong: 'कृपया लहान नाव लिहा', attending: 'कृपया एक पर्याय निवडा' },
+      thanks: 'धन्यवाद! आपला संदेश WhatsApp मध्ये तयार आहे.',
+      again: 'पुन्हा बदला',
+    },
+    photos: {
+      eyebrow: 'आमच्या आठवणी',
+      title: 'अनमोल क्षण',
+      hint: 'फोटो बदलण्यासाठी डावीकडे किंवा उजवीकडे सरकवा',
+      next: 'पुढील फोटो',
+      alts: {
+        couple: 'फेटा घातलेला वर आणि पैठणी नेसलेली वधू यांचे चित्र',
+        cardMr: 'श्री गणेश व घंटांसह मराठी निमंत्रण पत्रिका',
+        cardEn: 'कमळ व सजवलेल्या हत्तीसह इंग्रजी निमंत्रण पत्रिका',
       },
     },
     venue: {
@@ -190,21 +277,11 @@ export const content = {
       calendar: 'कॅलेंडरमध्ये जोडा',
       mapTitle: 'विठ्ठल मंगलम् लॉन्स, वर्ये, सातारा — नकाशा',
     },
-    gallery: {
-      eyebrow: 'पत्रिका',
-      title: 'आमची निमंत्रण पत्रिका',
-      hint: 'मोठी पाहण्यासाठी पत्रिकेवर टॅप करा',
-      cards: [
-        { src: '/img/card-marathi.jpg', alt: 'श्री गणेश, घंटा व वधू-वरांसह मराठी निमंत्रण पत्रिका' },
-        { src: '/img/card-english.jpg', alt: 'कमळ व सजवलेल्या हत्तीसह इंग्रजी निमंत्रण पत्रिका' },
-      ],
-      close: 'बंद करा',
-    },
     footer: {
       presence: 'आपली उपस्थिती व शुभाशीर्वाद हेच आमच्यासाठी मोलाचे आहेत.',
       inviter: 'निमंत्रक',
       family: 'उत्तेकर परिवार',
-      thanks: 'आपण अवश्य उपस्थित राहावे, ही आग्रहाची विनंती.',
     },
+    music: { play: 'संगीत सुरू करा', pause: 'संगीत थांबवा' },
   },
 };
